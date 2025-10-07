@@ -1,0 +1,43 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import ProjectCard from '@/components/ProjectCard.astro';
+import Footer from '@/components/Footer.astro';
+import Hero from '@/components/Hero.astro';
+import Services from '@/components/Services.astro';
+import Process from '@/components/Process.astro';
+import Planes from '@/components/Planes.astro';
+import { getCollection } from 'astro:content';
+
+// Ahora, en lugar de la lista, buscamos los proyectos en la carpeta content.
+const projects = await getCollection('projects');
+---
+<Layout 
+  title="Juan Cruz Perez | Desarrollador Web" 
+  description="Juan Cruz Perez, un desarrollador web especializado en crear sitios modernos y rápidos para pequeños negocios."
+>
+<Hero />
+<Services />
+<Planes />
+<!-- <Services />
+<Process /> -->
+
+<section class="container mx-auto px-8 py-16 text-center">
+    <h2 class="text-3xl sm:text-4xl font-black font-display text-neutral-300 mb-16">
+      Algunos proyectos realizados...
+    </h2>
+    <p class="text-lg text-neutral-400 max-w-2xl mx-auto mb-16">
+      Acá hay algunos de los proyectos en los que he trabajado. Siempre estoy buscando nuevos desafíos y oportunidades para aprender y crecer como desarrollador. Si tenés un proyecto en mente, ¡no dudes en contactarme!
+    </p>
+    
+    <div class="flex flex-col gap-y-20">
+      {projects.map((project, index) => (
+        <ProjectCard 
+          project={project}
+          reverse={index % 2 !== 0}
+        />
+      ))}
+    </div>
+</section>
+
+  <Footer />
+</Layout>

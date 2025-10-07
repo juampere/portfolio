@@ -1,0 +1,18 @@
+{
+  "name": "mi-portfolio-personal",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@iconify-json/mdi": "^1.2.3",
+    "@tailwindcss/vite": "^4.1.13",
+    "astro": "^5.13.7",
+    "astro-icon": "^1.1.5",
+    "tailwindcss": "^4.1.13"
+  }
+}

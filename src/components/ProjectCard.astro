@@ -1,0 +1,46 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  project: CollectionEntry<'projects'>;
+  reverse?: boolean;
+}
+
+const { project, reverse = false } = Astro.props;
+const { title, description, tags, img, repoLink, liveLink } = project.data;
+---
+<article class:list={["flex flex-col md:flex-row items-center gap-8 md:gap-12", { "md:flex-row-reverse": reverse }]}>
+  
+  <div class="md:w-1/2 w-full">
+    <a href={liveLink} target="_blank" rel="noopener noreferrer">
+      <img
+        src={img}
+        alt={`Captura de pantalla del proyecto ${title}`}
+        class="rounded-xl shadow-xl hover:scale-105 transition-transform duration-300"
+      />
+    </a>
+  </div>
+
+  <div class="md:w-1/2 w-full text-center md:text-left">
+    <h3 class="text-2xl font-bold text-white mb-4">{title}</h3>
+    <p class="text-neutral-300 mb-6">{description}</p>
+    
+    <div class="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
+      {tags.map(tag => (
+        <span class="bg-yellow-900/50 text-yellow-300 text-sm font-medium px-3 py-1 rounded-full">{tag}</span>
+      ))}
+    </div>
+
+    <div class="flex justify-center md:justify-start gap-4">
+      <a href={repoLink} target="_blank" rel="noopener noreferrer" class="bg-neutral-800 text-neutral-100 px-5 py-3 rounded-lg hover:bg-neutral-700 transition-colors inline-flex items-center gap-2">
+        <Icon name="mdi:github" class="size-6" />
+        Ver Código
+      </a>
+      <a href={liveLink} target="_blank" rel="noopener noreferrer" class="bg-yellow-600 text-white px-5 py-3 rounded-lg hover:bg-yellow-700 transition-colors inline-flex items-center gap-2">
+        <Icon name="mdi:web" class="size-6" />    
+        Ver Online
+      </a>
+    </div>
+  </div>
+</article>
